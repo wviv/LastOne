@@ -1,0 +1,77 @@
+spring:
+  application:
+    name: last
+  elasticsearch:
+    rest:
+      uris: 1
+  rabbitmq:
+    host: 127.0.0.1
+    port: 5672
+    username: guest
+    password: guest
+    virtualHost: test01
+    #发送方确认
+    publisher-confirm-type: correlated
+    publisher-returns: true
+    #ack 开启之后 失败成功都会回调confirm
+    template:
+      mandatory: true
+  redis:
+    host: 127.0.0.1
+    port: 6379
+    database: 8
+    password:
+
+#    dynamic: true  Whether to create an AmqpAdmin bean.
+#  mvc:
+#    log-request-details: on
+#  security:
+#    user:
+#      name: root
+#      password: 123456
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://root:123456@ms-discovery1:8771/eureka/,http://root:123456@ms-discovery2:8772/eureka/
+    enabled: false
+    fetch-registry: true
+    register-with-eureka: false
+mybatis-plus:
+  mapper-locations: classpath:/mappers/**/*Mapper.xml
+  typeAliasesPackage: com.wa.last.entity
+  global-config:
+    #主键类型  0:"数据库ID自增", 1:"用户输入ID",2:"全局唯一ID (数字类型唯一ID)", 3:"全局唯一ID UUID";
+    id-type: 3
+    #字段策略 0:"忽略判断",1:"非 NULL 判断"),2:"非空判断"
+    field-strategy: 2
+    #驼峰下划线转换
+    db-column-underline: true
+    #mp2.3+ 全局表前缀 mp_
+    #table-prefix: mp_
+    #刷新mapper 调试神器
+    #refresh-mapper: true
+    #数据库大写下划线转换
+    #capital-mode: true
+    db-config:
+      logic-delete-value: 1
+      logic-not-delete-value: 0
+  configuration:
+    map-underscore-to-camel-case: true
+    cache-enabled: false
+#    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+ws:
+#  链接地址 加密的将ws  改为wss
+  port: 8083
+  url: ws://localhost:${ws.port}/webSocket
+  mq-queue-name: netty-websocket
+  mq-exchange-name: netty-websocket.fanout
+
+---
+spring:
+  profiles: dev
+---
+spring:
+  profiles: test
+---
+spring:
+  profiles: pro

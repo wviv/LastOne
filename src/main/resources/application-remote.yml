@@ -1,0 +1,23 @@
+spring:
+  autoconfigure:
+    exclude: com.alibaba.druid.spring.boot.autoconfigure.DruidDataSourceAutoConfigure
+  profiles: remote
+  datasource:
+    url: jdbc:mysql://127.0.0.1:3306/test?useUnicode=true&characterEncoding=utf8&allowMultiQueries=true&useSSL=false&serverTimezone=Asia/Shanghai&allowPublicKeyRetrieval=true
+    username: root
+    password: 123456
+    driver-class-name: com.mysql.cj.jdbc.Driver
+feign:
+  hystrix:
+    enabled: false
+eureka:
+  client:
+    enabled: false
+#logging:
+#  level:
+server:
+  port: 8082
+#mybatis-plus:
+#  configuration:
+#    cache-enabled: true
+#    root: debug

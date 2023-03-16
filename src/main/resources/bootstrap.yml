@@ -1,0 +1,33 @@
+server:
+  port: 80
+spring:
+  profiles:
+    active: remote
+#debug: true
+---
+
+server:
+  port: 80
+spring:
+  profiles: pro
+  servlet:
+    multipart:
+      max-file-size: 50MB
+      max-request-size: 50MB
+  cloud:
+    config:
+      enabled: true
+      discovery:
+        enabled: true
+        service-id: config
+      username: test
+      password: 123456
+      profile: pro
+eureka:
+  instance:
+    prefer-ip-address: true
+    non-secure-port: 80
+  client:
+    service-url:
+      defaultZone: http://eurekaClient:Z5FAutumnBJLIsaidAutumn4cZ@ms-discovery/eureka/,http://eurekaClient:Z5FAutumnBJLIsaidAutumn4cZ@ms-discovery2/eureka/
+    eureka-server-connect-timeout-seconds: 30

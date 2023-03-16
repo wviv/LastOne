@@ -1,0 +1,13 @@
+# Except this file !.gitignore
+.classpath
+.project
+.settings
+target
+.idea
+.vscode
+.DS_Store
+.factorypath
+/logs
+*.iml
+*.log
+node_modules
