@@ -2,8 +2,7 @@
 
 对于Spring全家桶整合一个常用中间件和一些demo的逻辑
 对于新手可以提供一定的帮助
-
-
+内容涵盖 Redis、Mysql、Mybatis、Mybatis-Plus、RabbitMq、Netty、Drools、clickhouse
 
 ## 模块
 
@@ -24,6 +23,8 @@
 15. utils 工具类
 16. w1
 17. ws 基于netty、mq 实现的ws
+
+## 等等
 
 
 
