@@ -10,9 +10,6 @@ spring:
 feign:
   hystrix:
     enabled: false
-eureka:
-  client:
-    enabled: false
 #logging:
 #  level:
 server:

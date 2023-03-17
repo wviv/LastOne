@@ -8,6 +8,7 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.tomcat.util.http.SameSiteCookies;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseCookie;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -18,7 +19,6 @@ import javax.annotation.Resource;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.ws.rs.core.HttpHeaders;
 import java.time.Duration;
 import java.util.Arrays;
 import java.util.List;
@@ -44,7 +44,7 @@ public class UserController {
     public ResultBean<String> info(@PathVariable("id") String id, HttpServletRequest request) {
         Cookie[] cookies = request.getCookies();
         List<Cookie> user = Arrays.stream(cookies).filter(cookie -> cookie.getName().equals("user")).collect(Collectors.toList());
-        if (CollectionUtil.isEmpty(user)){
+        if (CollectionUtil.isEmpty(user)) {
             return ResultBean.success("没有获取到用户cookie");
         }
         return ResultBean.success("获取用户消息成功");

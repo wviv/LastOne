@@ -1,9 +1,5 @@
 package com.wa.last;
 
-import com.wa.last.filter.AuthenticationFilter;
-import com.wa.last.log.ControlLog;
-import com.wa.last.mvc.pojo.entity.HocRequestLoggingFilter;
-import com.wa.last.utils.TimeDateUtils;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -13,11 +9,14 @@ import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateTimeDeserializer;
 import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateSerializer;
 import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateTimeSerializer;
 import com.sun.org.apache.xerces.internal.impl.xs.util.StringListImpl;
+import com.wa.last.filter.AuthenticationFilter;
+import com.wa.last.log.ControlLog;
+import com.wa.last.mvc.pojo.entity.HocRequestLoggingFilter;
+import com.wa.last.utils.TimeDateUtils;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
-import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
 import org.springframework.cloud.openfeign.EnableFeignClients;
 import org.springframework.context.annotation.Bean;
 import org.springframework.data.redis.connection.RedisConnectionFactory;
@@ -45,7 +44,6 @@ import java.util.TimeZone;
  * @date 2018/4/25 11:07
  */
 @SpringBootApplication
-@EnableEurekaClient
 @ControlLog
 @MapperScan("com.wa.last.mvc.mapper")
 @EnableFeignClients
@@ -59,7 +57,7 @@ public class ClientApplication {
 
 
     @Bean
-    public RedisTemplate<String,String> redisTemplate(RedisConnectionFactory redisConnectionFactory){
+    public RedisTemplate<String, String> redisTemplate(RedisConnectionFactory redisConnectionFactory) {
         StringRedisTemplate redisTemplate = new StringRedisTemplate(redisConnectionFactory);
         // key 序列化方式
         redisTemplate.setKeySerializer(RedisSerializer.string());
@@ -90,7 +88,7 @@ public class ClientApplication {
     public FilterRegistrationBean<AuthenticationFilter> filterRegistrationBean() {
         FilterRegistrationBean<AuthenticationFilter> registrationBean = new FilterRegistrationBean(authenticationFilter());
         registrationBean.setOrder(19);
-        registrationBean.setUrlPatterns(new StringListImpl(new String[]{"/**"},1));
+        registrationBean.setUrlPatterns(new StringListImpl(new String[]{"/**"}, 1));
         return registrationBean;
     }
 
@@ -135,8 +133,8 @@ public class ClientApplication {
         return converter;
     }
 
-//    @Bean
-    public HocRequestLoggingFilter commonsRequestLoggingFilter(){
+    //    @Bean
+    public HocRequestLoggingFilter commonsRequestLoggingFilter() {
         return new HocRequestLoggingFilter();
     }
 }

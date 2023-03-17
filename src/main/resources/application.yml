@@ -29,13 +29,6 @@ spring:
 #    user:
 #      name: root
 #      password: 123456
-eureka:
-  client:
-    serviceUrl:
-      defaultZone: http://root:123456@ms-discovery1:8771/eureka/,http://root:123456@ms-discovery2:8772/eureka/
-    enabled: false
-    fetch-registry: true
-    register-with-eureka: false
 mybatis-plus:
   mapper-locations: classpath:/mappers/**/*Mapper.xml
   typeAliasesPackage: com.wa.last.entity
