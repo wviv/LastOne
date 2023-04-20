@@ -1,6 +1,8 @@
 package com.wa.last.algorithm.T6;
 
 import com.wa.last.algorithm.T5.ListNode;
+import io.jsonwebtoken.Claims;
+import io.jsonwebtoken.Jwts;
 
 /**
  * 反转链表
@@ -8,6 +10,13 @@ import com.wa.last.algorithm.T5.ListNode;
 public class Test6 {
 
     public static void main(String[] args) {
+
+        Claims claims = Jwts.parser()
+//                .setSigningKey(publicKey)
+                .parseClaimsJws("authorization").getBody();
+        String clientId = claims.get("client_id", String.class);
+
+        System.out.println(clientId);
 
         ListNode listNode = new ListNode(1,new ListNode(2,new ListNode(3,new ListNode(4,new ListNode(5)))));
         ListNode listNode1 = reverseList(listNode);
